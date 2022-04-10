@@ -3,7 +3,7 @@
 ## Install all dependencies
 
 ```
-run install.all
+make install.all
 ```
 
 ## Run app
