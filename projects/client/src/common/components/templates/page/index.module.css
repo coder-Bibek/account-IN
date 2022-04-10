@@ -1,0 +1,15 @@
+.main {
+  margin: 0 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .main {
+    margin: 0 3rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .main {
+    margin: 0rem 10rem;
+  }
+}

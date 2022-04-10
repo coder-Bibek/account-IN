@@ -1,0 +1,13 @@
+{
+  "name": "@accountin/monorepo",
+  "version": "1.0.0",
+  "description": "account handling app",
+  "repository": "https://github.com/coder-Bibek/account-IN.git",
+  "author": "Bibek Kumar Bidari",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "react": "^18.0.0"
+  }
+}

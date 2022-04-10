@@ -1,0 +1,78 @@
+.aside {
+  background-color: white;
+  position: fixed;
+  top: 0%;
+  transform: translateX(-110%);
+  transition: transform 0.2s ease;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+}
+
+.asideContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0.5rem 0;
+}
+
+.aside[data-aside="open"] {
+  transform: translateX(0%);
+}
+
+.asideLogo {
+  width: 5rem;
+}
+
+.asideLogoContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.asideIconContainer {
+  margin: 0 2rem;
+}
+
+.asideNav {
+  margin-top: 1rem;
+}
+
+.asideList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  list-style-type: none;
+}
+
+.asideList li {
+  color: var(--color);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 -1rem;
+  transition: 200ms;
+}
+
+li:hover {
+  color: rgb(92, 92, 235);
+}
+
+.asideLoginButton {
+  background-color: blueviolet;
+  border-radius: 0.25rem;
+  border: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  width: 5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .aside {
+    display: none;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@accountin/server",
+  "version": "1.0.0",
+  "description": "backend for accountIN",
+  "main": "index.js",
+  "repository": "https://github.com/coder-Bibek/account-IN.git",
+  "author": "Bibek Kumar Bidari",
+  "license": "UNLICENSED",
+  "private": true
+}
