@@ -66,10 +66,6 @@ li:hover {
 }
 
 @media only screen and (min-width: 768px) {
-  header {
-    margin-top: 2rem;
-  }
-
   article {
     margin: 0 2rem;
   }
