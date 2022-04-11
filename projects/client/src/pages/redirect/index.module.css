@@ -1,0 +1,40 @@
+.redirectContainer {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imageContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.errorImage {
+  width: 20rem;
+  height: 20rem;
+}
+
+.homeButton {
+  padding: 0.75rem;
+  width: 5rem;
+  background-color: blueviolet;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .errorImage {
+    width: 30rem;
+    height: 30rem;
+  }
+
+  .homeButton {
+    font-size: 1.25rem;
+    width: 8rem;
+  }
+}

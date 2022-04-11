@@ -7,6 +7,7 @@ import RequireAuth from '../common/components/auth/index';
 import Account from '../pages/accounts';
 import Login from '../pages/login';
 import Investments from '../pages/investments';
+import Redirect from '../pages/redirect';
 
 export default function App(): JSX.Element {
   return (
@@ -31,6 +32,7 @@ export default function App(): JSX.Element {
           ></Route>
         </Route>
 
+        <Route path='*' element={<Redirect></Redirect>} />
 
       </Routes>
     </Router>
