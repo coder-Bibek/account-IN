@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+
 import Page from "../../common/components/templates/page"
 import styles from "./index.module.css"
 
