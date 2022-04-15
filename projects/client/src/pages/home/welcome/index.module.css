@@ -26,7 +26,15 @@
   line-height: 2.5rem;
 }
 
-.loginButton {
+.loginButtonContainer {
+  width: 7rem;
+}
+
+.startedButtonContainer {
+  width: 10rem;
+}
+
+.startedButton {
   background-color: blueviolet;
   border-radius: 0.25rem;
   border: none;
@@ -35,7 +43,7 @@
   font-size: 1rem;
   font-weight: bold;
   padding: 0.75rem;
-  width: 7rem;
+  width: 100%;
   margin-top: 0.5rem;
 }
 
@@ -54,14 +62,22 @@
     margin-top: -3rem;
   }
 
-  .loginButton{
-    font-size: 1.25rem;
+  .loginButtonContainer {
     width: 8rem;
+  }
+
+  .startedButtonContainer {
+    width: 11rem;
+  }
+
+  .startedButton {
+    padding: 0.9rem;
+    font-size: 1.25rem;
   }
 }
 
-@media only screen and (min-width: 1200px){
-  .homeContainer h1{
+@media only screen and (min-width: 1200px) {
+  .homeContainer h1 {
     font-size: 5rem;
   }
 }
