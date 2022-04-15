@@ -1,5 +1,7 @@
 import styles from "./index.module.css"
-import { Formik, Form, Field } from "formik"
+import { Formik, Field, Form } from "formik"
+import * as Yup from "yup"
+import { useNavigate } from "react-router-dom"
 
 import Page from "../../common/components/templates/page"
 
@@ -13,32 +15,50 @@ const initialValues: loginProps = {
     password: ''
 }
 
+const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Email is invalid or empty'),
+    password: Yup.string().required('password cannot be empty'),
+});
+
 export default function Login(): JSX.Element {
+    const navigate = useNavigate()
+
     return (
         <Page>
             <section className={styles.loginContainer}>
                 <Formik
                     initialValues={initialValues}
-                    validate={(values) => { }}
+
+                    validationSchema={validationSchema}
+
                     onSubmit={(values, { setSubmitting, resetForm }) => {
-                        setTimeout(function () {
-                            alert(JSON.stringify(values));
-                            setSubmitting(false)
-                            resetForm()
-                        }, 3000)
+                        localStorage.setItem('user', JSON.stringify(values))
+
+                        setSubmitting(false);
+                        resetForm();
+
+                        navigate("/accounts")
                     }}
                 >
-                    {({ isSubmitting }) => (
-                        <Form className={styles.loginFields}>
+                    {({ isSubmitting, errors, touched }) => (
+                        <Form className={styles.loginFields} noValidate>
                             <p className={styles.loginText}>LOGIN</p>
                             <section className={styles.inputContainer}>
-                                <label htmlFor="email">EMAIL:</label>
-                                <Field type="email" name="email" className={styles.emailField} placeholder="Email Address" />
+                                <label htmlFor="email">EMAIL</label>
+                                <Field
+                                    type="email"
+                                    name="email"
+                                    className={styles.emailField}
+                                    placeholder="Email Address"
+                                    autoComplete="none"
+                                ></Field>
+                                <div className={styles.errorText}>{touched.email && errors && errors.email}</div>
                             </section>
 
                             <section className={styles.inputContainer}>
-                                <label htmlFor="password">PASSWORD:</label>
+                                <label htmlFor="password">PASSWORD</label>
                                 <Field type="password" name="password" className={styles.passwordField} placeholder="Password" />
+                                <div className={styles.errorText}>{touched.password && errors && errors.password}</div>
                             </section>
 
                             <button type="submit" disabled={isSubmitting} className={styles.loginButton}>
@@ -48,6 +68,6 @@ export default function Login(): JSX.Element {
                     )}
                 </Formik>
             </section>
-        </Page>
+        </Page >
     )
 }
