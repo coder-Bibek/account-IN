@@ -1,0 +1,87 @@
+.loginContainer {
+  border: 0.1rem solid rgb(174, 172, 172);
+  box-shadow: 0 0 0.5rem rgb(174, 172, 172);
+  box-sizing: border-box;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  padding-bottom: 1rem;
+}
+
+.loginFields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.loginText {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.emailField {
+  width: 15rem;
+  height: 2rem;
+  text-align: center;
+  color: rgb(171, 170, 170);
+  font-size: 0.9rem;
+}
+
+.passwordField {
+  width: 15rem;
+  height: 2rem;
+  text-align: center;
+  color: rgb(171, 170, 170);
+  font-size: 0.9rem;
+}
+
+.emailField,
+.passwordField:focus {
+  color: black;
+}
+
+.loginButton {
+  padding: 0.5rem;
+  background-color: blueviolet;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  width: 15rem;
+  margin: 1rem 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.loginButton:disabled{
+  opacity: 0.2;
+}
+
+@media only screen and (min-width: 768px) {
+  .loginContainer {
+    width: 25rem;
+  }
+
+  .emailField {
+    width: 20rem;
+  }
+
+  .passwordField {
+    width: 20rem;
+  }
+
+  .loginButton {
+    font-size: 1.25rem;
+    width: 20rem;
+  }
+}
