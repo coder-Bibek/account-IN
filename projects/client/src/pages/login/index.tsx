@@ -44,7 +44,7 @@ export default function Login(): JSX.Element {
                         <Form className={styles.loginFields} noValidate>
                             <p className={styles.loginText}>LOGIN</p>
                             <section className={styles.inputContainer}>
-                                <label htmlFor="email">EMAIL</label>
+                                <label htmlFor="email">Email</label>
                                 <Field
                                     type="email"
                                     name="email"
@@ -56,7 +56,7 @@ export default function Login(): JSX.Element {
                             </section>
 
                             <section className={styles.inputContainer}>
-                                <label htmlFor="password">PASSWORD</label>
+                                <label htmlFor="password">Password</label>
                                 <Field type="password" name="password" className={styles.passwordField} placeholder="Password" />
                                 <div className={styles.errorText}>{touched.password && errors && errors.password}</div>
                             </section>

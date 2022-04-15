@@ -30,6 +30,10 @@
   width: 7rem;
 }
 
+.loginButtonContainer button{
+  padding: 0.75rem;
+}
+
 .startedButtonContainer {
   width: 10rem;
 }

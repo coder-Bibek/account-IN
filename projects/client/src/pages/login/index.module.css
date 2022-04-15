@@ -30,6 +30,7 @@
 
 .inputContainer label{
   margin: 0.5rem 0;
+  font-weight: bold;
 }
 
 .emailField {
