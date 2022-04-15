@@ -26,7 +26,7 @@
 
 @media only screen and (min-width: 768px) {
   .loginButton {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 
   .logoutButton{
