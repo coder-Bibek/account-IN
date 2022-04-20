@@ -20,9 +20,8 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Login(): JSX.Element {
-
     const handleSubmit = (props: loginProps) => {
-        console.log(props)
+        localStorage.setItem("user", JSON.stringify(props))
     }
 
     return (
@@ -37,6 +36,7 @@ export default function Login(): JSX.Element {
                         handleSubmit(values);
                         setSubmitting(false);
                         resetForm();
+                        
                     }}
                 >
                     {({ isSubmitting, errors, touched }) => (
