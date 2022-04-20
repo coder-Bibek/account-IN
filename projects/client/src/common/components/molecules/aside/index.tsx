@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import { CloseIcon } from "../../atoms/CloseIcon";
 import LoginButton from "../../atoms/LoginButton";
+import LogoutButton from "../../atoms/LogoutButton";
 
 interface asideProps {
     isOpen: boolean
     onClick: () => void
+    user: string | null
 }
 
-export default function Aside({ isOpen, onClick }: asideProps): JSX.Element {
+export default function Aside({ isOpen, onClick, user }: asideProps): JSX.Element {
     return (
         <aside className="aside" data-aside={isOpen ? "open" : "close"} onClick={onClick}>
             <section className="asideContainer">
@@ -25,7 +27,10 @@ export default function Aside({ isOpen, onClick }: asideProps): JSX.Element {
                         <Link to="/" ><li>Home</li></Link>
                         <Link to="/investments"><li>Investments</li></Link>
                         <Link to="/accounts"><li>Accounts</li></Link>
-                        <Link to="/login" className="loginButtonContainer"><li><LoginButton></LoginButton></li></Link>
+                        {user === "" ?
+                            <Link to="/login" className="loginButtonContainer"><li><LoginButton></LoginButton></li></Link> :
+                            <li className="logoutButtonContainer"><LogoutButton></LogoutButton></li>
+                        }
                     </ul>
                 </nav>
             </section>
