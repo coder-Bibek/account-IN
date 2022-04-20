@@ -8,7 +8,7 @@ import LoginButton from "../../atoms/LoginButton"
 interface navbarProps {
     logo: string
     onClick: () => void
-    user: string
+    user: string 
 }
 
 export default function Navbar({ logo, onClick, user }: navbarProps): JSX.Element {
