@@ -36,7 +36,7 @@
 }
 
 .startedButtonContainer {
-  width: 10rem;
+  width: 9rem;
 }
 
 .startedButton {
@@ -47,7 +47,7 @@
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
-  padding: 0.5rem;
+  padding: 0.75rem;
   width: 100%;
   margin-top: 0.5rem;
 }

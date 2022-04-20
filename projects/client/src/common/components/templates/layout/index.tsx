@@ -33,6 +33,7 @@ export default function MainLayout({ children }: layoutProps): JSX.Element {
             <Outlet></Outlet>
             <ToastContainer
                 position="top-right"
+                theme="colored"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
