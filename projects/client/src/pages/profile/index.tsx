@@ -8,7 +8,7 @@ import styles from "./index.module.css"
 export default function Profile(): JSX.Element {
     const stringifiedUser = useSelector((state: RootState) => state.login.user)
 
-    const user = JSON.parse(stringifiedUser)
+    const user = JSON.parse(stringifiedUser.toString())
     return (
         <Page>
             <h1>Profile</h1>
