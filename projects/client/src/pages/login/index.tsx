@@ -1,7 +1,6 @@
 import styles from "./index.module.css"
 import { Formik, Field, Form } from "formik"
 import * as Yup from "yup"
-import { useNavigate } from "react-router-dom"
 
 import Page from "../../common/components/templates/page"
 
@@ -21,8 +20,6 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Login(): JSX.Element {
-    const navigate = useNavigate()
-
     return (
         <Page>
             <section className={styles.loginContainer}>
@@ -32,12 +29,14 @@ export default function Login(): JSX.Element {
                     validationSchema={validationSchema}
 
                     onSubmit={(values, { setSubmitting, resetForm }) => {
-                        localStorage.setItem('user', JSON.stringify(values))
 
-                        setSubmitting(false);
-                        resetForm();
+                        setTimeout(() => {
+                            localStorage.setItem('user', JSON.stringify(values))
 
-                        navigate("/accounts")
+                            setSubmitting(false);
+                            resetForm();
+                        }, 3000)
+
                     }}
                 >
                     {({ isSubmitting, errors, touched }) => (
@@ -50,7 +49,6 @@ export default function Login(): JSX.Element {
                                     name="email"
                                     className={styles.emailField}
                                     placeholder="Email Address"
-                                    autoComplete="none"
                                 ></Field>
                                 <div className={styles.errorText}>{touched.email && errors && errors.email}</div>
                             </section>
