@@ -20,13 +20,13 @@ export default function MainLayout({ children }: layoutProps): JSX.Element {
     const user = useSelector((state: RootState) => state.login.user)
 
     useEffect(() => {
-        dispatch(selectUser)
+        dispatch(selectUser(localStorage.getItem("user")))
     },[dispatch])
 
     return (
         <React.Fragment>
-            <Navbar logo={logo} onClick={() => setIsOpen(!isOpen)} user={user?.email}></Navbar>
-            <Aside isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} user={user?.email}></Aside>
+            <Navbar logo={logo} onClick={() => setIsOpen(!isOpen)} user={user}></Navbar>
+            <Aside isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} user={user}></Aside>
             <Outlet></Outlet>
         </React.Fragment>
     );
