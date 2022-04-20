@@ -4,7 +4,7 @@ export interface loginType {
     user: {
         email: string
         password: string
-    }
+    } 
 }
 
 const initialState: loginType = {
@@ -22,11 +22,15 @@ export const loginSlice = createSlice({
             localStorage.setItem('user', JSON.stringify(action.payload))
 
             state.user = action.payload
+        },
+
+        selectUser: (state) => {
+            state.user = JSON.parse(localStorage.getItem('user') || "")
         }
 
     },
 });
 
-export const { addUser } = loginSlice.actions
+export const { addUser, selectUser } = loginSlice.actions
 
 export default loginSlice.reducer;

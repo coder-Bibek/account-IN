@@ -9,7 +9,7 @@ import LogoutButton from "../../atoms/LogoutButton";
 interface asideProps {
     isOpen: boolean
     onClick: () => void
-    user: string | null
+    user: string
 }
 
 export default function Aside({ isOpen, onClick, user }: asideProps): JSX.Element {
