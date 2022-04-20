@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useRef } from "react"
 
 import Login from "../../../pages/login/index"
 
@@ -7,11 +7,11 @@ interface routeProps {
 }
 
 export default function RequireAuth({ children }: routeProps): JSX.Element {
-    const [user] = useState<boolean>(false)
+    const user = useRef(localStorage.getItem("user"))
 
     return (
         <React.Fragment>
-            {user ? children : <Login></Login>}
+            {user.current !== null ? children : <Login></Login>}
         </React.Fragment>
     )
 }

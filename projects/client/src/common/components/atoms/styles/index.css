@@ -6,13 +6,30 @@
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
-  padding: 0.75rem;
+  padding: 0.5rem;
   margin-top: 0.5rem;
   width: 100%;
 }
 
+.logoutButton {
+  background-color: rgb(226, 141, 43);
+  border-radius: 0.25rem;
+  border: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 115%;
+}
+
 @media only screen and (min-width: 768px) {
   .loginButton {
-    font-size: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .logoutButton{
+    font-size: 1.15rem;
   }
 }
