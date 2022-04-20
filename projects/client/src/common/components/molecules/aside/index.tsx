@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import { CloseIcon } from "../../atoms/CloseIcon";
 import LoginButton from "../../atoms/LoginButton";
-import LogoutButton from "../../atoms/LogoutButton";
 
 interface asideProps {
     isOpen: boolean
@@ -29,7 +28,7 @@ export default function Aside({ isOpen, onClick, user }: asideProps): JSX.Elemen
                         <Link to="/accounts"><li>Accounts</li></Link>
                         {user === null ?
                             <Link to="/login" className="loginButtonContainer"><li><LoginButton></LoginButton></li></Link> :
-                            <li className="logoutButtonContainer"><LogoutButton></LogoutButton></li>
+                            <Link to="/profile"><li>Profile</li></Link>
                         }
                     </ul>
                 </nav>

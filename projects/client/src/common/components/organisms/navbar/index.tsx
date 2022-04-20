@@ -4,12 +4,11 @@ import styles from "./index.module.css"
 import { HarmBurgerIcon } from "../../atoms/HarmBurger"
 import { Link } from "react-router-dom"
 import LoginButton from "../../atoms/LoginButton"
-import LogoutButton from "../../atoms/LogoutButton"
 
 interface navbarProps {
     logo: string
     onClick: () => void
-    user:object
+    user: object
 }
 
 export default function Navbar({ logo, onClick, user }: navbarProps): JSX.Element {
@@ -32,7 +31,7 @@ export default function Navbar({ logo, onClick, user }: navbarProps): JSX.Elemen
                                 <Link to="/accounts"><li>Accounts</li></Link>
                                 {user === null ?
                                     <Link to="/login" className={styles.loginButtonContainer}><li><LoginButton></LoginButton></li></Link> :
-                                    <li className={styles.logoutButtonContainer}><LogoutButton></LogoutButton></li>
+                                    <Link to="/profile"><li>Profile</li></Link>
                                 }
                             </ul>
                         </nav>
