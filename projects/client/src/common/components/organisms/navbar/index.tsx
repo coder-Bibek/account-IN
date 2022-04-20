@@ -4,13 +4,15 @@ import styles from "./index.module.css"
 import { HarmBurgerIcon } from "../../atoms/HarmBurger"
 import { Link } from "react-router-dom"
 import LoginButton from "../../atoms/LoginButton"
+import LogoutButton from "../../atoms/LogoutButton"
 
 interface navbarProps {
     logo: string
     onClick: () => void
+    user:object
 }
 
-export default function Navbar({ logo, onClick }: navbarProps): JSX.Element {
+export default function Navbar({ logo, onClick, user }: navbarProps): JSX.Element {
 
     return (
         <React.Fragment>
@@ -28,7 +30,10 @@ export default function Navbar({ logo, onClick }: navbarProps): JSX.Element {
                                 <Link to="/" ><li>Home</li></Link>
                                 <Link to="/investments">  <li>Investments</li></Link>
                                 <Link to="/accounts"><li>Accounts</li></Link>
-                                <Link to="/login" className={styles.loginButtonContainer}><li><LoginButton></LoginButton></li></Link>
+                                {user === null ?
+                                    <Link to="/login" className={styles.loginButtonContainer}><li><LoginButton></LoginButton></li></Link> :
+                                    <li className={styles.logoutButtonContainer}><LogoutButton></LogoutButton></li>
+                                }
                             </ul>
                         </nav>
                     </section>
