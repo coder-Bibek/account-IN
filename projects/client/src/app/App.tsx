@@ -20,7 +20,7 @@ export default function App(): JSX.Element {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/login' element={user === null ? <Login></Login> : <Home></Home>}></Route>
+          <Route path='/login' element={user === "" ? <Login></Login> : <Home></Home>}></Route>
           <Route path='/accounts' element=
             {
               <RequireAuth>

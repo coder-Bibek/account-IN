@@ -1,17 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface loginType {
-    user: {
-        email: string
-        password: string
-    }
+    user: string
 }
 
 const initialState: loginType = {
-    user: {
-        email: '',
-        password: ''
-    }
+    user:''
 };
 
 export const loginSlice = createSlice({
@@ -24,8 +18,8 @@ export const loginSlice = createSlice({
             state.user = action.payload
         },
 
-        selectUser: (state, action) => {
-            state.user = action.payload
+        selectUser: (state) => {
+            state.user = localStorage.getItem("user") || "" ;
         },
 
     },
