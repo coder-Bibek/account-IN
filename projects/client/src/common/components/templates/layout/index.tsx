@@ -20,7 +20,7 @@ export default function MainLayout({ children }: layoutProps): JSX.Element {
     const user = useSelector((state: RootState) => state.login.user)
 
     useEffect(() => {
-        dispatch(selectUser(localStorage.getItem("user")))
+        dispatch(selectUser())
     },[dispatch])
 
     return (

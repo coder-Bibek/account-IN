@@ -9,12 +9,12 @@ import { selectUser } from "../../login/loginSlice"
 import styles from "./index.module.css"
 
 export default function Welcome(): JSX.Element {
-    const dispatch = useDispatch()
-
     const user = useSelector((state: RootState) => state.login.user)
 
+    const dispatch = useDispatch()
+
     useEffect(() => {
-        dispatch(selectUser(localStorage.getItem('user')))
+        dispatch(selectUser())
     }, [dispatch])
 
     return (
@@ -22,7 +22,7 @@ export default function Welcome(): JSX.Element {
             <p className={styles.appParagraph}>New App</p>
             <h1>Welcome to Account-IN</h1>
             <p className={styles.description}>When it comes to accounts, Go <strong>Account-IN</strong></p>
-            {user !== null ?
+            {user !== "" ?
                 <Link to="/accounts" className={styles.startedButtonContainer}> <button className={styles.startedButton}>GET STARTED</button></Link> :
                 <Link to="/login" className={styles.loginButtonContainer}><LoginButton></LoginButton></Link>
             }

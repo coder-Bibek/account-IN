@@ -15,12 +15,12 @@ export default function RequireAuth({ children }: routeProps): JSX.Element {
     const user = useSelector((state: RootState) => state.login.user)
 
     useEffect(() => {
-        dispatch(selectUser(localStorage.getItem('user')))
+        dispatch(selectUser())
     },[dispatch])
 
     return (
         <React.Fragment>
-            {user !== null ? children : <Login></Login>}
+            {user !== "" ? children : <Login></Login>}
         </React.Fragment>
     )
 }
