@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface loginType {
-    user: string
+    user: string 
 }
 
 const initialState: loginType = {
