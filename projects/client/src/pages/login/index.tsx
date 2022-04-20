@@ -3,6 +3,8 @@ import { Formik, Field, Form } from "formik"
 import * as Yup from "yup"
 
 import Page from "../../common/components/templates/page"
+import { useDispatch } from "react-redux"
+import { addUser } from "./loginSlice"
 
 interface loginProps {
     email: string
@@ -20,8 +22,10 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Login(): JSX.Element {
+    const dispatch = useDispatch()
+
     const handleSubmit = (props: loginProps) => {
-        localStorage.setItem("user", JSON.stringify(props))
+        dispatch(addUser(props))
     }
 
     return (
@@ -36,7 +40,7 @@ export default function Login(): JSX.Element {
                         handleSubmit(values);
                         setSubmitting(false);
                         resetForm();
-                        
+
                     }}
                 >
                     {({ isSubmitting, errors, touched }) => (
