@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom"
 import "./styles/index.css"
 
+import { toast } from "react-toastify"
+
 export default function LogoutButton(): JSX.Element {
     const navigate = useNavigate()
 
     const handleClick = () => {
         localStorage.clear()
+
+        toast.success('logged out succesfully')
 
         navigate("/")
     }

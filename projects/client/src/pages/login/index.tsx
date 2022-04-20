@@ -1,6 +1,8 @@
-import styles from "./index.module.css"
 import { Formik, Field, Form } from "formik"
 import * as Yup from "yup"
+import {  toast } from 'react-toastify';
+
+import styles from "./index.module.css"
 
 import Page from "../../common/components/templates/page"
 import { useDispatch } from "react-redux"
@@ -26,6 +28,8 @@ export default function Login(): JSX.Element {
 
     const handleSubmit = (props: loginProps) => {
         dispatch(addUser(props))
+
+        toast.success('logged in succesfully')
     }
 
     return (
@@ -75,6 +79,7 @@ export default function Login(): JSX.Element {
                     )}
                 </Formik>
             </section>
+
         </Page >
     )
 }
