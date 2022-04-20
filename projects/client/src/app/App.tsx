@@ -8,14 +8,19 @@ import Account from '../pages/accounts';
 import Login from '../pages/login';
 import Investments from '../pages/investments';
 import Redirect from '../pages/redirect';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
+import Profile from '../pages/profile';
 
 export default function App(): JSX.Element {
+  const user = useSelector((state: RootState) => state.login.user)
+
   return (
     <Router>
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/login' element={user === null ? <Login></Login> : <Home></Home>}></Route>
           <Route path='/accounts' element=
             {
               <RequireAuth>
@@ -27,6 +32,13 @@ export default function App(): JSX.Element {
             {
               <RequireAuth>
                 <Investments></Investments>
+              </RequireAuth>
+            }
+          ></Route>
+          <Route path='/profile' element=
+            {
+              <RequireAuth>
+                <Profile></Profile>
               </RequireAuth>
             }
           ></Route>
