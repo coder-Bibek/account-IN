@@ -20,6 +20,11 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Login(): JSX.Element {
+
+    const handleSubmit = (props: loginProps) => {
+        console.log(props)
+    }
+
     return (
         <Page>
             <section className={styles.loginContainer}>
@@ -29,14 +34,9 @@ export default function Login(): JSX.Element {
                     validationSchema={validationSchema}
 
                     onSubmit={(values, { setSubmitting, resetForm }) => {
-
-                        setTimeout(() => {
-                            localStorage.setItem('user', JSON.stringify(values))
-
-                            setSubmitting(false);
-                            resetForm();
-                        }, 3000)
-
+                        handleSubmit(values);
+                        setSubmitting(false);
+                        resetForm();
                     }}
                 >
                     {({ isSubmitting, errors, touched }) => (
@@ -55,7 +55,12 @@ export default function Login(): JSX.Element {
 
                             <section className={styles.inputContainer}>
                                 <label htmlFor="password">Password</label>
-                                <Field type="password" name="password" className={styles.passwordField} placeholder="Password" />
+                                <Field
+                                    type="password"
+                                    name="password"
+                                    className={styles.passwordField}
+                                    placeholder="Password"
+                                ></Field>
                                 <div className={styles.errorText}>{touched.password && errors && errors.password}</div>
                             </section>
 
