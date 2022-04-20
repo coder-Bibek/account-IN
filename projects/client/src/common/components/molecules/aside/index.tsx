@@ -8,7 +8,7 @@ import LoginButton from "../../atoms/LoginButton";
 interface asideProps {
     isOpen: boolean
     onClick: () => void
-    user: string
+    user: string 
 }
 
 export default function Aside({ isOpen, onClick, user }: asideProps): JSX.Element {
