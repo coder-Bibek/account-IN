@@ -1,12 +1,12 @@
 import { Formik, Field, Form } from "formik"
 import * as Yup from "yup"
-import {  toast } from 'react-toastify';
 
 import styles from "./index.module.css"
 
 import Page from "../../common/components/templates/page"
-import { useDispatch } from "react-redux"
-import { addUser } from "./loginSlice"
+import { addUser, selectUser } from "./loginSlice"
+import { useAppDispatch, useAppSelector } from "../../app/redux/hooks"
+import { toast } from "react-toastify"
 
 interface loginProps {
     email: string
@@ -24,12 +24,16 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Login(): JSX.Element {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
+
+    const user = useAppSelector(selectUser)
 
     const handleSubmit = (props: loginProps) => {
         dispatch(addUser(props))
 
-        toast.success('logged in succesfully')
+        if (user !== null) {
+            toast.success('logged in succesfully')
+        }
     }
 
     return (

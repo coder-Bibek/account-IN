@@ -1,11 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../app/redux/store";
+
+type user = {
+    email: string,
+    password: string
+}
 
 export interface loginType {
-    user: string 
+    user: user | null
 }
 
 const initialState: loginType = {
-    user:''
+    user: localStorage.getItem('user') && JSON.parse(localStorage.getItem('user') || '{}')
 };
 
 export const loginSlice = createSlice({
@@ -18,13 +24,19 @@ export const loginSlice = createSlice({
             state.user = action.payload
         },
 
-        selectUser: (state) => {
-            state.user = localStorage.getItem("user") || "" ;
+        fetchUser: (state) => {
+            state.user = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user') || '{}')
         },
+
+        removeUser: () => {
+            localStorage.clear()
+        }
 
     },
 });
 
-export const { addUser, selectUser } = loginSlice.actions
+export const { addUser, fetchUser, removeUser } = loginSlice.actions
+
+export const selectUser = (state: RootState): loginType => state.login
 
 export default loginSlice.reducer;
