@@ -1,26 +1,19 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React from "react"
 
 import Login from "../../pages/login/index"
 import { selectUser } from "../../pages/login/loginSlice"
-import { RootState } from "../redux/store"
+import { useAppSelector } from "../redux/hooks"
 
 interface routeProps {
     children: React.ReactNode
 }
 
 export default function RequireAuth({ children }: routeProps): JSX.Element {
-    const dispatch = useDispatch()
-
-    const user = useSelector((state: RootState) => state.login.user)
-
-    useEffect(() => {
-        dispatch(selectUser())
-    },[dispatch])
+    const {user} = useAppSelector(selectUser)
 
     return (
         <React.Fragment>
-            {user !== "" ? children : <Login></Login>}
+            {user !== null ? children : <Login></Login>}
         </React.Fragment>
     )
 }

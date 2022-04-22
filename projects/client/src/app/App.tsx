@@ -8,19 +8,19 @@ import Account from '../pages/accounts';
 import Login from '../pages/login';
 import Investments from '../pages/investments';
 import Redirect from '../pages/redirect';
-import { useSelector } from 'react-redux';
-import { RootState } from './redux/store';
 import Profile from '../pages/profile';
+import { selectUser } from '../pages/login/loginSlice';
+import { useAppSelector } from './redux/hooks';
 
 export default function App(): JSX.Element {
-  const user = useSelector((state: RootState) => state.login.user)
+  const {user} = useAppSelector(selectUser)
 
   return (
     <Router>
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/login' element={user === "" ? <Login></Login> : <Home></Home>}></Route>
+          <Route path='/login' element={user === null ? <Login></Login> : <Home></Home>}></Route>
           <Route path='/accounts' element=
             {
               <RequireAuth>
