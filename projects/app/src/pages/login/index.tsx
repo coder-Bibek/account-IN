@@ -4,9 +4,8 @@ import * as Yup from "yup"
 import styles from "./index.module.css"
 
 import Page from "../../common/components/templates/page"
-import { addUser, selectUser } from "./loginSlice"
-import { useAppDispatch, useAppSelector } from "../../app/redux/hooks"
-import { toast } from "react-toastify"
+import { addUser } from "./loginSlice"
+import { useAppDispatch } from "../../app/redux/hooks"
 
 interface loginProps {
     email: string
@@ -26,16 +25,6 @@ const validationSchema = Yup.object().shape({
 export default function Login(): JSX.Element {
     const dispatch = useAppDispatch()
 
-    const user = useAppSelector(selectUser)
-
-    const handleSubmit = (props: loginProps) => {
-        dispatch(addUser(props))
-
-        if (user !== null) {
-            toast.success('logged in succesfully')
-        }
-    }
-
     return (
         <Page>
             <section className={styles.loginContainer}>
@@ -45,7 +34,7 @@ export default function Login(): JSX.Element {
                     validationSchema={validationSchema}
 
                     onSubmit={(values, { setSubmitting, resetForm }) => {
-                        handleSubmit(values);
+                        dispatch(addUser(values))
                         setSubmitting(false);
                         resetForm();
 

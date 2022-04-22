@@ -11,7 +11,7 @@ export interface loginType {
 }
 
 const initialState: loginType = {
-    user: localStorage.getItem('user') && JSON.parse(localStorage.getItem('user') || '{}')
+    user: localStorage.getItem('user') && JSON.parse(localStorage.getItem('user') || '{}'),
 };
 
 export const loginSlice = createSlice({
@@ -19,9 +19,13 @@ export const loginSlice = createSlice({
     initialState,
     reducers: {
         addUser: (state, action) => {
-            localStorage.setItem('user', JSON.stringify(action.payload))
+            const { email, password } = action.payload
 
-            state.user = action.payload
+            if (process.env.REACT_APP_EMAIL === email && process.env.REACT_APP_PASSWORD === password) {
+                localStorage.setItem('user', JSON.stringify(action.payload))
+
+                state.user = action.payload
+            }
         },
 
         fetchUser: (state) => {
