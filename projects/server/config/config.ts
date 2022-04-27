@@ -1,9 +1,12 @@
 import sql from "mysql"
 
-interface configProps {
-    config: object
-}
+require('dotenv').config()
 
-export const connection = ({ config }: configProps) => {
-    return sql.createConnection(config)
-}
+const connection = sql.createConnection({
+    host: process.env.HOST || 'localhost',
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
+})
+
+export default connection;

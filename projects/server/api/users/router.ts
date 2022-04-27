@@ -11,6 +11,6 @@ const router = express.Router({
  * @response 200 - A JSON array of reactors
  * @responseContent {string[]} 200 application/json
  */
-router.get('/', controller.all)
+router.get('/users', controller.all)
 
 export default router
