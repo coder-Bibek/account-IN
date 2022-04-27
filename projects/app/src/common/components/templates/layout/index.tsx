@@ -8,7 +8,6 @@ import logo from "../../../assets/logo.svg"
 
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppSelector } from "../../../../app/redux/hooks";
-import { selectUser } from "../../../../pages/login/loginSlice";
 
 interface layoutProps {
     children?: React.ReactNode
@@ -17,7 +16,7 @@ interface layoutProps {
 export default function MainLayout({ children }: layoutProps): JSX.Element {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    const { user } = useAppSelector(selectUser)
+    const user = useAppSelector(state => state.login)
 
     return (
         <React.Fragment>

@@ -4,7 +4,6 @@ import * as Yup from "yup"
 import styles from "./index.module.css"
 
 import Page from "../../common/components/templates/page"
-import { addUser } from "./loginSlice"
 import { useAppDispatch } from "../../app/redux/hooks"
 
 interface loginProps {
@@ -34,7 +33,6 @@ export default function Login(): JSX.Element {
                     validationSchema={validationSchema}
 
                     onSubmit={(values, { setSubmitting, resetForm }) => {
-                        dispatch(addUser(values))
                         setSubmitting(false);
                         resetForm();
 
