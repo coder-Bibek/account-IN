@@ -1,12 +1,11 @@
 import { useAppSelector } from "../../app/redux/hooks";
 import LogoutButton from "../../common/components/atoms/LogoutButton";
 import Page from "../../common/components/templates/page";
-import { selectUser } from "../login/loginSlice";
 
 import styles from "./index.module.css"
 
 export default function Profile(): JSX.Element {
-    const {user} = useAppSelector(selectUser)
+    const user = useAppSelector(state => state.login)
 
     return (
         <Page>
