@@ -6,7 +6,10 @@ import * as router from "./router"
 require('dotenv').config()
 
 const app = express()
+
 app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 // connect to database
 connection.connect((err) => {

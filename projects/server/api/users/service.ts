@@ -18,4 +18,25 @@ const findUser = () => {
     })
 }
 
-export { findUser }
+const addUser = (body: object) => {
+    return new Promise((resolve, reject) => {
+        connection.query('INSERT INTO users SET ?', body, (error) => {
+            if (error) {
+                console.error(error)
+
+                return reject({
+                    status: false,
+                    error: "error on adding users "
+                })
+
+            }
+
+            resolve({
+                status: true,
+                message: "success"
+            })
+        })
+    })
+}
+
+export { findUser, addUser }
