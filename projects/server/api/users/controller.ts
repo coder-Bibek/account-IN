@@ -13,7 +13,6 @@ const all = (req: Request, res: Response) => {
 }
 
 const create = (req: Request, res: Response) => {
-    console.log("request>>", req.body)
 
     service
         .addUser(req.body)

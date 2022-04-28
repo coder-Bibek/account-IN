@@ -1,6 +1,6 @@
-import express from "express"
 import cors from "cors"
 import connection from "../config/config"
+import express from "express"
 import * as router from "./router"
 
 require('dotenv').config()

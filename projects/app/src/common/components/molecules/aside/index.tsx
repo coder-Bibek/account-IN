@@ -8,7 +8,7 @@ import LoginButton from "../../atoms/LoginButton";
 interface asideProps {
     isOpen: boolean
     onClick: () => void
-    user: object | null
+    user: Array<object>
 }
 
 export default function Aside({ isOpen, onClick, user }: asideProps): JSX.Element {
@@ -26,7 +26,7 @@ export default function Aside({ isOpen, onClick, user }: asideProps): JSX.Elemen
                         <Link to="/" ><li>Home</li></Link>
                         <Link to="/investments"><li>Investments</li></Link>
                         <Link to="/accounts"><li>Accounts</li></Link>
-                        {user === null ?
+                        {user.length === 0 ?
                             <Link to="/login" className="loginButtonContainer"><li><LoginButton></LoginButton></li></Link> :
                             <Link to="/profile"><li>Profile</li></Link>
                         }

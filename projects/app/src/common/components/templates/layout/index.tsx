@@ -16,12 +16,12 @@ interface layoutProps {
 export default function MainLayout({ children }: layoutProps): JSX.Element {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    const user = useAppSelector(state => state.login)
+    const {users} = useAppSelector(state => state.login)
 
     return (
         <React.Fragment>
-            <Navbar logo={logo} onClick={() => setIsOpen(!isOpen)} user={user}></Navbar>
-            <Aside isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} user={user}></Aside>
+            <Navbar logo={logo} onClick={() => setIsOpen(!isOpen)} user={users}></Navbar>
+            <Aside isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} user={users}></Aside>
             <Outlet></Outlet>
             <ToastContainer
                 position="top-right"
