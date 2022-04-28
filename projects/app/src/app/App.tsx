@@ -12,14 +12,14 @@ import Profile from '../pages/profile';
 import { useAppSelector } from './redux/hooks';
 
 export default function App(): JSX.Element {
-  const user = useAppSelector(state => state.login)
+  const { users } = useAppSelector(state => state.login)
 
   return (
     <Router>
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/login' element={user.email === '' ? <Login></Login> : <Home></Home>}></Route>
+          <Route path='/login' element={users.length === 0 ? <Login></Login> : <Home></Home>}></Route>
           <Route path='/accounts' element=
             {
               <RequireAuth>

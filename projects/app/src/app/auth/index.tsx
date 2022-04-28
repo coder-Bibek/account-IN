@@ -8,11 +8,11 @@ interface routeProps {
 }
 
 export default function RequireAuth({ children }: routeProps): JSX.Element {
-    const user = useAppSelector(state=>state.login)
+    const {users} = useAppSelector(state=>state.login)
 
     return (
         <React.Fragment>
-            {user.email !== '' ? children : <Login></Login>}
+            {users.length !== 0 ? children : <Login></Login>}
         </React.Fragment>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 import { ToastContainer } from "react-toastify"
 
@@ -7,7 +7,8 @@ import Aside from "../../molecules/aside";
 import logo from "../../../assets/logo.svg"
 
 import 'react-toastify/dist/ReactToastify.css';
-import { useAppSelector } from "../../../../app/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../app/redux/hooks";
+import { fetchUsersAsync } from "../../../../pages/login/loginSlice";
 
 interface layoutProps {
     children?: React.ReactNode
@@ -16,7 +17,13 @@ interface layoutProps {
 export default function MainLayout({ children }: layoutProps): JSX.Element {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    const {users} = useAppSelector(state => state.login)
+    const { users } = useAppSelector(state => state.login)
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(fetchUsersAsync())
+    }, [dispatch])
 
     return (
         <React.Fragment>
