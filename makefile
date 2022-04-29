@@ -1,7 +1,7 @@
 install:
 	yarn install
 
-install.all: install install.app install.server
+install.all: install install.app install.server install.api
 
 install.app:
 	npx lerna exec --scope @accountin/client -- make install

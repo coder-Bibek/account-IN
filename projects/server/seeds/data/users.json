@@ -1,0 +1,14 @@
+[
+    {
+        "email": "bibek",
+        "password": "******",
+        "status": 1,
+        "auth_token": "bbkizgod4all"
+    },
+    {
+        "email": "ram",
+        "password": "******",
+        "status": 1,
+        "auth_token": "rmizgod4hmslf"
+    }
+]
