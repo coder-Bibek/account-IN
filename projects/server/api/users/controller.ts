@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
 import * as service from "./service"
 import bcrypt from "bcrypt"
-import * as jwt from "jsonwebtoken"
 
 const all = (req: Request, res: Response) => {
     service
@@ -10,7 +9,7 @@ const all = (req: Request, res: Response) => {
             res.json(response)
         })
         .catch(error => {
-            res.send(error)
+            res.json(error)
         })
 }
 
@@ -34,7 +33,7 @@ const create = async (req: Request, res: Response) => {
             res.json(response)
         })
         .catch(error => {
-            res.send(error)
+            res.json(error)
         })
 }
 
@@ -48,16 +47,12 @@ const find = (req: Request, res: Response) => {
             res.json(response)
         })
         .catch(error => {
-            res.send(error)
+            res.json(error)
         })
 }
 
 const update = (req: Request, res: Response) => {
     const decoded = req.headers['authorization']?.split(" ")[1] || ""
-
-    const {email} = req.body
-
-    console.log(email)
 
     service
     .updateUser(req.body.email, decoded)
@@ -65,7 +60,7 @@ const update = (req: Request, res: Response) => {
         res.json(response)
     })
     .catch(error => {
-        res.send(error)
+        res.json(error)
     })
 
 }
