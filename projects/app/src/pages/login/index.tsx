@@ -4,8 +4,9 @@ import * as Yup from "yup"
 import styles from "./index.module.css"
 
 import Page from "../../common/components/templates/page"
-import { useAppDispatch } from "../../app/redux/hooks"
-import { addUsersAsync } from "./loginSlice"
+import { useAppDispatch, useAppSelector } from "../../app/redux/hooks"
+import { addUsersAsync, fetchUsersAsync } from "./loginSlice"
+import { useEffect } from "react"
 
 interface loginProps {
     email: string
@@ -25,7 +26,11 @@ const validationSchema = Yup.object().shape({
 export default function Login(): JSX.Element {
     const dispatch = useAppDispatch()
 
-    // const { loading, users } = useAppSelector(state => state.login)
+    const { loading, users } = useAppSelector(state => state.login)
+
+    useEffect(() => {
+        dispatch(fetchUsersAsync())
+    }, [dispatch, loading, users])
 
     return (
         <Page>

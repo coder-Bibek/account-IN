@@ -29,7 +29,7 @@ export default function Navbar({ logo, onClick, user }: navbarProps): JSX.Elemen
                                 <Link to="/" ><li>Home</li></Link>
                                 <Link to="/investments">  <li>Investments</li></Link>
                                 <Link to="/accounts"><li>Accounts</li></Link>
-                                {user.length === 0 ?
+                                {user.length === 0 || user.length === undefined ?
                                     <Link to="/login" className={styles.loginButtonContainer}><li><LoginButton></LoginButton></li></Link> :
                                     <Link to="/profile"><li>Profile</li></Link>
                                 }
