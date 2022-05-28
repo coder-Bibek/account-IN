@@ -12,7 +12,7 @@ export default function RequireAuth({ children }: routeProps): JSX.Element {
 
     return (
         <React.Fragment>
-            {users.length !== 0 ? children : <Login></Login>}
+            {users.length !== 0 && users.length !== undefined ? children : <Login></Login>}
         </React.Fragment>
     )
 }

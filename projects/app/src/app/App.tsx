@@ -19,7 +19,7 @@ export default function App(): JSX.Element {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/login' element={users.length === 0 ? <Login></Login> : <Home></Home>}></Route>
+          <Route path='/login' element={users.length === 0 || users.length === undefined ? <Login></Login> : <Home></Home>}></Route>
           <Route path='/accounts' element=
             {
               <RequireAuth>
