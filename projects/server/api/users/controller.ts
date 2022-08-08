@@ -3,8 +3,10 @@ import * as service from "./service"
 import bcrypt from "bcrypt"
 
 const all = (req: Request, res: Response) => {
+    const decoded = req.headers['authorization']?.split(" ")[1] || ""
+
     service
-        .findUser()
+        .findUser(decoded)
         .then(response => {
             res.json(response)
         })
@@ -51,6 +53,19 @@ const find = (req: Request, res: Response) => {
         })
 }
 
+const login = (req: Request, res: Response) => {
+    const decoded = req.headers['authorization']?.split(" ")[1] || ""
+
+    service
+        .login(req.body, decoded)
+        .then(response => {
+            res.json(response)
+        })
+        .catch(error => {
+            res.json(error)
+        })
+}
+
 const update = (req: Request, res: Response) => {
     const decoded = req.headers['authorization']?.split(" ")[1] || ""
 
@@ -64,4 +79,4 @@ const update = (req: Request, res: Response) => {
     })
 
 }
-export { all, create, find, update }
+export { all, create, find, update, login }

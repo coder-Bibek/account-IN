@@ -5,7 +5,7 @@ import styles from "./index.module.css"
 
 import Page from "../../common/components/templates/page"
 import { useAppDispatch, useAppSelector } from "../../app/redux/hooks"
-import { addUsersAsync, fetchUsersAsync } from "./loginSlice"
+import { fetchUsersAsync, loginAsync } from "./loginSlice"
 import { useEffect } from "react"
 
 interface loginProps {
@@ -41,7 +41,7 @@ export default function Login(): JSX.Element {
                     validationSchema={validationSchema}
 
                     onSubmit={(values, { setSubmitting, resetForm }) => {
-                        dispatch(addUsersAsync(values))
+                        dispatch(loginAsync(values))
                         setSubmitting(false);
                         resetForm();
 

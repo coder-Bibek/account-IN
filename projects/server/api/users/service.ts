@@ -9,19 +9,24 @@ type loginProps = {
     auth_token: string
 }
 
-const findUser = () => {
+const findUser = (token: string) => {
     return new Promise((resolve, reject) => {
-        connection.query('select * from users WHERE status = 1', (error, result) => {
+        jwt.verify(token, config.JWT_SECRET || "SECRET", (error) => {
             if (error) {
-                return reject({
-                    status: false,
-                    error: "error on fetching users "
-                })
+                reject("You are not authenticated to access API");
             }
+            connection.query('select * from users WHERE status = 1', (error, result) => {
+                if (error) {
+                    return reject({
+                        status: false,
+                        error: "error on fetching users "
+                    })
+                }
 
-            resolve({
-                data: result,
-                status: true
+                resolve({
+                    data: result,
+                    status: true
+                })
             })
         })
     })
@@ -31,7 +36,7 @@ const findUserByEmail = (email: string, token: string) => {
     return new Promise((resolve, reject) => {
         jwt.verify(token, config.JWT_SECRET || "SECRET", (error) => {
             if (error) {
-                reject(error)
+                reject("You are not authenticated to access API");
             }
 
             connection.query('SELECT * FROM users WHERE email = ? and status = 1', [email], (error, result) => {
@@ -51,6 +56,35 @@ const findUserByEmail = (email: string, token: string) => {
 
                 resolve({
                     data: result,
+                    status: true
+                })
+            })
+        })
+    })
+}
+
+const login = (body: loginProps, token: string) => {
+    const { email, password } = body;
+
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, config.JWT_SECRET || "SECRET", (error) => {
+            if (error) {
+                reject({
+                    message: "You are not authenticated to access API",
+                    status: false
+                });
+            }
+
+            connection.query('select * from users WHERE email = ? and password = ? and status = 1', [email, password], (error, result) => {
+                if (error) {
+                    return reject({
+                        status: false,
+                        error: "error on fetching users "
+                    })
+                }
+
+                resolve({
+                    message: "success",
                     status: true
                 })
             })
@@ -134,4 +168,4 @@ const updateUser = (email: string, token: string) => {
     })
 }
 
-export { findUser, addUser, findUserByEmail, updateUser }
+export { findUser, addUser, findUserByEmail, updateUser, login }

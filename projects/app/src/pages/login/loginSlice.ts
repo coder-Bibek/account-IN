@@ -11,11 +11,13 @@ type user = {
 export interface loginProps {
     users: Array<object>
     loading: boolean
+    error: string
 }
 
 export const initialState: loginProps = {
     users: [],
-    loading: true
+    loading: true,
+    error: ""
 }
 
 export const loginSlice = createSlice({
@@ -26,11 +28,23 @@ export const loginSlice = createSlice({
             if (action.payload.status) {
                 state.users = action.payload.data
                 state.loading = false
+                state.error = ""
+            } else {
+                state.error = action.payload.message
             }
         },
 
         addUsers: (state, action) => {
             state.loading = !action.payload.status
+        },
+
+        login: (state, action) => {
+            if (action.payload.status) {
+                state.loading = false
+                state.error = ""
+            } else {
+                state.error = action.payload.message
+            }
         },
 
         removeUser: (state, action) => {
@@ -77,13 +91,28 @@ export const addUsersAsync = (data: user) => async (dispatch: Dispatch<Action>) 
     }
 }
 
+export const loginAsync = (data: user) => async (dispatch: Dispatch<Action>) => {
+    try {
+        const token = localStorage.getItem('user_token');
+
+        const response = await axios.post(`${config.url}/${config.version}/api/users/auth`, data, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        dispatch(login(response.data));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export const removeUserAsync = () => async (dispatch: Dispatch<Action>) => {
     try {
         const email = localStorage.getItem('email')
 
         const token = localStorage.getItem('user_token')
 
-        const response = await axios.put(`${config.url}/${config.version}/api/users`, {email}, {
+        const response = await axios.put(`${config.url}/${config.version}/api/users`, { email }, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -95,6 +124,6 @@ export const removeUserAsync = () => async (dispatch: Dispatch<Action>) => {
     }
 }
 
-export const { addUsers, fetchUsers, removeUser } = loginSlice.actions
+export const { addUsers, fetchUsers, removeUser, login } = loginSlice.actions
 
 export default loginSlice.reducer;

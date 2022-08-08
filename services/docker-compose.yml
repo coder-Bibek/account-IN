@@ -1,0 +1,33 @@
+version: "3.8"
+
+networks:
+  services:
+    driver: bridge
+    name: ${NETWORK}
+
+services:
+  mariadb:
+    container_name: ${WORKSPACE}-mariadb
+    env_file: .env
+    image: mariadb:10.8
+    networks:
+      - services
+    ports:
+      - ${MARIADB_PORT}:3306
+    volumes:
+      - ./mariadb/conf.d/character_set.cnf:/etc/mysql/conf.d/character-set.cnf
+      - ./mariadb/data:/var/lib/mysql
+      - ./mariadb/fixtures:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: ${WORKSPACE}-phpmyadmin
+    depends_on:
+      - mariadb
+    environment:
+      PMA_ABSOLUTE_URI: http://localhost:${PHPMYADMIN_PORT}
+      PMA_HOSTS: mariadb
+    networks:
+      - services
+    ports:
+      - ${PHPMYADMIN_PORT}:80    
